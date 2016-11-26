@@ -41,6 +41,8 @@ class Cache: public Storage {
   void PrintCache();
   void PrintMissRate();
 
+  Storage *lower_;
+  
  private:
   int HaveHit(int idx, uint64_t tag);
   // Bypassing
@@ -55,7 +57,6 @@ class Cache: public Storage {
   void PrefetchAlgorithm();
 
   CacheConfig config_;
-  Storage *lower_;
 
   int nRow, nCol;
   Block array[MAX_ROW][MAX_COL];

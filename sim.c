@@ -92,7 +92,12 @@ int main(int argc, char *argv[])
 	}
 	finish();
     	/* print cache miss rate */
+	printf("L1:\n");
 	cache.PrintMissRate();
+	printf("L2:\n");
+	((Cache *)cache.lower_)->PrintMissRate();
+	printf("LLC:\n");
+	((Cache *)((Cache *)(cache.lower_))->lower_)->PrintMissRate();
 	printf("Instruction count: %d, memory cycle: %d\n", i, memory_cycle);
 	return 0;
 }
@@ -970,9 +975,11 @@ void set_cache()
 	LLC.SetLower(&m);
 
 	StorageLatency lt;
-	lt.hit_latency = 10;
+	lt.hit_latency = 4;
 	cache.SetLatency(lt);
+	lt.hit_latency = 5;
 	L2.SetLatency(lt);
+	lt.hit_latency = 11;
 	LLC.SetLatency(lt);
 
 	lt.hit_latency = 100;

@@ -35,6 +35,7 @@ class Storage {
   void SetLatency(StorageLatency sl) { latency_ = sl; }
   void GetLatency(StorageLatency &sl) { sl = latency_; }
 
+
   // Main access process
   // [in]  addr: access address
   // [in]  bytes: target number of bytes

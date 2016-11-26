@@ -1,0 +1,8 @@
+This is a simple cache simulator.
+Type make to build the project.
+
+trace/: trace files for test
+main.cc: independent test program for trace/
+
+You can modify the Makefile variable CFLAGS for conditional compiling,
+-DDEBUG will show debug information during executing. 

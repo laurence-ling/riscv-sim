@@ -12,7 +12,9 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
     uint64_t tag = temp >> config_.set_offset;
 
     if (hit = HaveHit(idx, tag)){
-        //printf("hit addr = %x, idx = %x, tag = %x\n", (int)addr, idx, (int)tag);
+        #ifdef DEBUG
+            printf("hit! addr = %x, idx = %x, tag = %x\n", (int)addr, idx, (int)tag);
+        #endif
         time += latency_.hit_latency;
         stats_.access_time += time;
 
@@ -35,7 +37,9 @@ void Cache::HandleRequest(uint64_t addr, int bytes, int read,
     // Miss
     stats_.miss_num += 1;
     int lower_hit, lower_time;
-    //printf("request lower addr %x\n", (int)addr);
+    #ifdef DEBUG
+        printf("miss! request lower addr %x\n", (int)addr);
+    #endif
     lower_->HandleRequest(addr, bytes, read, content,
                           lower_hit, lower_time);
     hit = lower_hit;

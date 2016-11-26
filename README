@@ -1,0 +1,11 @@
+This is a simple riscv simulator.
+Type make to build the project.
+
+test/: test programs for simulator, including dhrystone under dhrystone/
+cache/: cache simulator
+
+Run the simulator:
+  ./sim [--verbose|--debug] <file_name>
+  
+  --debug: debug mode, a gdb like debugging interface
+  --verbose: verbose mode, show all the details during running
